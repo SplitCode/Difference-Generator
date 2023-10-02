@@ -8,7 +8,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/71c007b43f46e158118b/test_coverage)](https://codeclimate.com/github/SplitCode/frontend-project-46/test_coverage)
 
 
-[![Node CI](https://github.com/SplitCode/frontend-project-46/actions/workflows/project.yml/badge.svg)](https://github.com/SplitCode/frontend-project-46/actions/workflows/project.yml)
+[![.github/workflows/main.yml](https://github.com/SplitCode/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/SplitCode/frontend-project-46/actions/workflows/main.yml)
 
 ### Description
 
