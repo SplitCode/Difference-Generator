@@ -7,6 +7,9 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/71c007b43f46e158118b/test_coverage)](https://codeclimate.com/github/SplitCode/frontend-project-46/test_coverage)
 
+
+![Node CI](https://github.com/SplitCode/hexlet-workflow/actions/workflows/project.yml/badge.svg)
+
 ### Description
 
 ___
