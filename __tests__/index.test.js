@@ -13,23 +13,18 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const firstFileJson = getFixturePath('file1.json');
 const secondFileJson = getFixturePath('file2.json');
 
+const firstFileYml = getFixturePath('file1.yml');
+const secondFileYml = getFixturePath('file2.yaml');
+
 const resultJson = fs.readFileSync(getFixturePath('resultJson.txt'), 'utf-8');
 const resultYml = fs.readFileSync(getFixturePath('resultYml.txt'), 'utf-8');
-
-// const result = `{
-//   - follow: false
-//     host: hexlet.io
-//   - proxy: 123.234.53.22
-//   - timeout: 50
-//   + timeout: 20
-//   + verbose: true
-// }`;
 
 test('diffJson', () => {
   expect(genDiff(firstFileJson, secondFileJson)).toEqual(resultJson);
 });
 
 test('diffYml', () => {
-  expect(genDiff(firstFileJson, secondFileJson)).toEqual(resultYml);
+  expect(genDiff(firstFileYml, secondFileYml)).toEqual(resultYml);
 });
+
 // const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
