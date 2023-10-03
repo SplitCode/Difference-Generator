@@ -11,8 +11,8 @@
 [![.github/workflows/main.yml](https://github.com/SplitCode/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/SplitCode/frontend-project-46/actions/workflows/main.yml)
 
 ### Description
-
+Gendiff - program for determines the difference between two data structures.
 ___
 ### Demonstrations
 
-[![asciicast](https://asciinema.org/a/610738.svg)](https://asciinema.org/a/610738)
+[![asciicast](https://asciinema.org/a/611734.svg)](https://asciinema.org/a/611734)
