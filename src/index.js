@@ -1,18 +1,30 @@
 import fs from 'fs';
-
 import path from 'path';
-
 import _ from 'lodash';
+import yaml from 'js-yaml';
 
 const genDiff = (filepath1, filepath2) => {
   const absolutePath1 = path.resolve(process.cwd(), filepath1);
   const absolutePath2 = path.resolve(process.cwd(), filepath2);
 
-  const file1 = JSON.parse(fs.readFileSync(absolutePath1, 'utf8'));
-  const file2 = JSON.parse(fs.readFileSync(absolutePath2, 'utf8'));
+  const format1 = path.extname(absolutePath1);
+  const format2 = path.extname(absolutePath2);
 
-  // console.log('File 1 content:', file1);
-  // console.log('File 2 content:', file2);
+  let file1;
+  let file2;
+
+  if (format1 === '.json' || format2 === '.json') {
+    file1 = JSON.parse(fs.readFileSync(absolutePath1, 'utf8'));
+    file2 = JSON.parse(fs.readFileSync(absolutePath2, 'utf8'));
+    // parse = JSON.parse;
+  } else if (format1 === '.yml' || format2 === '.yml') {
+    file1 = yaml.load(fs.readFileSync(absolutePath1, 'utf8'));
+    file2 = yaml.load(fs.readFileSync(absolutePath2, 'utf8'));
+    // parse = yaml.safeLoad;
+  }
+
+  // const file1 = JSON.parse(fs.readFileSync(absolutePath1, 'utf8'));
+  // const file2 = JSON.parse(fs.readFileSync(absolutePath2, 'utf8'));
 
   const keys1 = Object.keys(file1);
   const keys2 = Object.keys(file2);
