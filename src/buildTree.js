@@ -14,10 +14,10 @@ const data2 = {
 };
 
 const buildTree = (file1, file2) => {
-  const keys1 = Object.keys(file1);
-  // console.log(keys1);
-  const keys2 = Object.keys(file2);
-  const keys = _.union(keys1, keys2);
+  // const keys1 = Object.keys(file1);
+  // // console.log(keys1);
+  // const keys2 = Object.keys(file2);
+  const keys = _.union(Object.keys(file1), Object.keys(file2));
   const sortedKeys = _.sortBy(keys);
   // console.log(sortedKeys);
   const diff = sortedKeys.map((key) => {
