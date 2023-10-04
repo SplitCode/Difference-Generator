@@ -16,15 +16,16 @@ const secondFileJson = getFixturePath('file2.json');
 const firstFileYml = getFixturePath('file1.yml');
 const secondFileYml = getFixturePath('file2.yaml');
 
-const resultJson = fs.readFileSync(getFixturePath('resultJson.txt'), 'utf-8');
-const resultYml = fs.readFileSync(getFixturePath('resultYml.txt'), 'utf-8');
+// const resultStylish = fs.readFileSync(getFixturePath('resultStylish.txt'), 'utf-8');
+// const resultYml = fs.readFileSync(getFixturePath('resultYml.txt'), 'utf-8');
+const result = fs.readFileSync(getFixturePath('resultjson.txt'), 'utf-8');
 
 test('diffJson', () => {
-  expect(genDiff(firstFileJson, secondFileJson)).toEqual(resultJson);
+  expect(genDiff(firstFileJson, secondFileJson)).toEqual(result);
 });
 
 test('diffYml', () => {
-  expect(genDiff(firstFileYml, secondFileYml)).toEqual(resultYml);
+  expect(genDiff(firstFileYml, secondFileYml)).toEqual(result);
 });
 
 // const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
