@@ -18,7 +18,7 @@ const secondFileYml = getFixturePath('file2.yaml');
 
 // const resultStylish = fs.readFileSync(getFixturePath('resultStylish.txt'), 'utf-8');
 // const resultYml = fs.readFileSync(getFixturePath('resultYml.txt'), 'utf-8');
-const result = fs.readFileSync(getFixturePath('resultjson.txt'), 'utf-8');
+const result = fs.readFileSync(getFixturePath('resultJson.txt'), 'utf-8');
 
 test('diffJson', () => {
   expect(genDiff(firstFileJson, secondFileJson)).toEqual(result);
