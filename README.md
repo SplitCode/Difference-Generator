@@ -16,3 +16,6 @@ ___
 ### Demonstrations
 
 [![asciicast](https://asciinema.org/a/611734.svg)](https://asciinema.org/a/611734)
+
+stylish format:
+[![asciicast](https://asciinema.org/a/612317.svg)](https://asciinema.org/a/612317)
