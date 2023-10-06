@@ -1,43 +1,90 @@
 import _ from 'lodash';
 
-const data1 = {
-  host: 'hexlet.io',
-  timeout: 50,
-  proxy: '123.234.53.22',
-  follow: false,
-};
+// const data1 = {
+//   common: {
+//     setting1: 'Value 1',
+//     setting2: 200,
+//     setting3: true,
+//     setting6: {
+//       key: 'value',
+//       doge: {
+//         wow: '',
+//       },
+//     },
+//   },
+//   group1: {
+//     baz: 'bas',
+//     foo: 'bar',
+//     nest: {
+//       key: 'value',
+//     },
+//   },
+//   group2: {
+//     abc: 12345,
+//     deep: {
+//       id: 45,
+//     },
+//   },
+// };
 
-const data2 = {
-  timeout: 20,
-  verbose: true,
-  host: 'hexlet.io',
-};
+// const data2 = {
+//   common: {
+//     follow: false,
+//     setting1: 'Value 1',
+//     setting3: null,
+//     setting4: 'blah blah',
+//     setting5: {
+//       key5: 'value5',
+//     },
+//     setting6: {
+//       key: 'value',
+//       ops: 'vops',
+//       doge: {
+//         wow: 'so much',
+//       },
+//     },
+//   },
+//   group1: {
+//     foo: 'bar',
+//     baz: 'bars',
+//     nest: 'str',
+//   },
+//   group3: {
+//     deep: {
+//       id: {
+//         number: 45,
+//       },
+//     },
+//     fee: 100500,
+//   },
+// };
 
 const buildTree = (file1, file2) => {
-  // const keys1 = Object.keys(file1);
-  // // console.log(keys1);
-  // const keys2 = Object.keys(file2);
   const keys = _.union(Object.keys(file1), Object.keys(file2));
   const sortedKeys = _.sortBy(keys);
-  // console.log(sortedKeys);
-  const diff = sortedKeys.map((key) => {
-    // let status;
+
+  const diffTree = sortedKeys.map((key) => {
     if (!Object.hasOwn(file1, key)) {
-      // status = 'added';
-      return `  + ${key}: ${file2[key]}`;
-    } if (!Object.hasOwn(file2, key)) {
-      // status = 'deleted';
-      return `  - ${key}: ${file1[key]}`;
-    } if (file1[key] !== file2[key]) {
-      // status = 'changed';
-      return `  - ${key}: ${file1[key]}\n  + ${key}: ${file2[key]}`;
+      return { key, value: file2[key], status: 'added' };
     }
-    // status = 'unchanged';
-    return `    ${key}: ${file1[key]}`;
+    if (!Object.hasOwn(file2, key)) {
+      return { key, value: file1[key], status: 'deleted' };
+    }
+    if (_.isObject(file1[key]) && _.isObject(file2[key])) {
+      return { key, children: buildTree(file1[key], file2[key]), status: 'nested' };
+    }
+    if (file1[key] !== file2[key]) {
+      return {
+        key, value1: file1[key], value2: file2[key], status: 'changed',
+      };
+    }
+    return { key, value: file1[key], status: 'unchanged' };
   });
-  return ['{', ...diff, '}'].join('\n');
+
+  return diffTree;
 };
 
-buildTree(data1, data2);
+// console.log(JSON.stringify(buildTree(data1, data2)));
+// console.log(buildTree(data1, data2));
 
 export default buildTree;

@@ -12,7 +12,7 @@ const parse = (ext, file) => {
     case '.yaml':
       return yaml.load(file);
     default:
-      throw new Error('Unknown extension');
+      throw new Error(`Unknown extension: '${ext}'.`);
   }
 };
 
