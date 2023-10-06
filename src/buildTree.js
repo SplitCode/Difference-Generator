@@ -64,21 +64,22 @@ const buildTree = (file1, file2) => {
   const sortedKeys = _.sortBy(keys);
 
   const diffTree = sortedKeys.map((key) => {
+    let result;
+
     if (!Object.hasOwn(file1, key)) {
-      return { key, value: file2[key], status: 'added' };
-    }
-    if (!Object.hasOwn(file2, key)) {
-      return { key, value: file1[key], status: 'deleted' };
-    }
-    if (_.isObject(file1[key]) && _.isObject(file2[key])) {
-      return { key, children: buildTree(file1[key], file2[key]), status: 'nested' };
-    }
-    if (file1[key] !== file2[key]) {
-      return {
+      result = { key, value: file2[key], status: 'added' };
+    } else if (!Object.hasOwn(file2, key)) {
+      result = { key, value: file1[key], status: 'deleted' };
+    } else if (_.isObject(file1[key]) && _.isObject(file2[key])) {
+      result = { key, children: buildTree(file1[key], file2[key]), status: 'nested' };
+    } else if (file1[key] !== file2[key]) {
+      result = {
         key, value1: file1[key], value2: file2[key], status: 'changed',
       };
+    } else {
+      result = { key, value: file1[key], status: 'unchanged' };
     }
-    return { key, value: file1[key], status: 'unchanged' };
+    return result;
   });
 
   return diffTree;
