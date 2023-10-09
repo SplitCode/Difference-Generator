@@ -59,30 +59,30 @@ import _ from 'lodash';
 //   },
 // };
 
-const buildTree = (file1, file2) => {
-  const keys = _.union(Object.keys(file1), Object.keys(file2));
+const buildTree = (fileData1, fileData2) => {
+  const keys = _.union(Object.keys(fileData1), Object.keys(fileData2));
   const sortedKeys = _.sortBy(keys);
 
-  const diffTree = sortedKeys.map((key) => {
+  const getDiffTree = sortedKeys.map((key) => {
     let result;
 
-    if (!Object.hasOwn(file1, key)) {
-      result = { key, value: file2[key], status: 'added' };
-    } else if (!Object.hasOwn(file2, key)) {
-      result = { key, value: file1[key], status: 'deleted' };
-    } else if (_.isObject(file1[key]) && _.isObject(file2[key])) {
-      result = { key, children: buildTree(file1[key], file2[key]), status: 'nested' };
-    } else if (file1[key] !== file2[key]) {
+    if (!Object.hasOwn(fileData1, key)) {
+      result = { key, value: fileData2[key], status: 'added' };
+    } else if (!Object.hasOwn(fileData2, key)) {
+      result = { key, value: fileData1[key], status: 'deleted' };
+    } else if (_.isObject(fileData1[key]) && _.isObject(fileData2[key])) {
+      result = { key, children: buildTree(fileData1[key], fileData2[key]), status: 'nested' };
+    } else if (fileData1[key] !== fileData2[key]) {
       result = {
-        key, value1: file1[key], value2: file2[key], status: 'changed',
+        key, value1: fileData1[key], value2: fileData2[key], status: 'changed',
       };
     } else {
-      result = { key, value: file1[key], status: 'unchanged' };
+      result = { key, value: fileData1[key], status: 'unchanged' };
     }
     return result;
   });
 
-  return diffTree;
+  return getDiffTree;
 };
 
 // console.log(JSON.stringify(buildTree(data1, data2)));

@@ -23,6 +23,7 @@ const fourthYml = getFixturePath('file4.yaml');
 const resultJson = fs.readFileSync(getFixturePath('resultJson.txt'), 'utf-8');
 const resultYml = fs.readFileSync(getFixturePath('resultYml.txt'), 'utf-8');
 const resultStylish = fs.readFileSync(getFixturePath('resultStylish.txt'), 'utf-8');
+const resultPlain = fs.readFileSync(getFixturePath('resultPlain.txt'), 'utf-8');
 
 test('diffJson', () => {
   expect(genDiff(firstJson, secondJson)).toEqual(resultJson);
@@ -32,8 +33,12 @@ test('diffYml', () => {
   expect(genDiff(firstYml, secondYml)).toEqual(resultYml);
 });
 
-test('diffJsonStylish', () => {
-  expect(genDiff(thirdJson, fourthJson)).toEqual(resultStylish);
+// test('diffJsonStylish', () => {
+//   expect(genDiff(thirdJson, fourthJson)).toEqual(resultStylish);
+// });
+
+test('diffJsonPlain', () => {
+  expect(genDiff(thirdJson, fourthJson, 'plain')).toEqual(resultPlain);
 });
 
 test('diffYmlStylish', () => {
