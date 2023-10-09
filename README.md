@@ -42,3 +42,6 @@ npm link
 
 ### Comparison of JSON/YML/YAML format files with nested structure in 'plain' format
 [![asciicast](https://asciinema.org/a/612843.svg)](https://asciinema.org/a/612843)
+
+### Comparison of JSON/YML/YAML format files with nested structure in 'json' format
+[![asciicast](https://asciinema.org/a/612852.svg)](https://asciinema.org/a/612852)
