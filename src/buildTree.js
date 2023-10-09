@@ -67,22 +67,20 @@ const buildTree = (fileData1, fileData2) => {
     const value1 = fileData1[key];
     const value2 = fileData2[key];
 
-    let result;
-
     if (!Object.hasOwn(fileData1, key)) {
-      result = { key, value: value2, status: 'added' };
-    } else if (!Object.hasOwn(fileData2, key)) {
-      result = { key, value: value1, status: 'deleted' };
-    } else if (_.isObject(value1) && _.isObject(value2)) {
-      result = { key, children: buildTree(value1, value2), status: 'nested' };
-    } else if (value1 !== value2) {
-      result = {
+      return { key, value: value2, status: 'added' };
+    }
+    if (!Object.hasOwn(fileData2, key)) {
+      return { key, value: value1, status: 'deleted' };
+    }
+    if (_.isObject(value1) && _.isObject(value2)) {
+      return { key, children: buildTree(value1, value2), status: 'nested' };
+    }
+    if (value1 !== value2) {
+      return {
         key, value1, value2, status: 'changed',
       };
-    } else {
-      result = { key, value: value1, status: 'unchanged' };
-    }
-    return result;
+    } return { key, value: value1, status: 'unchanged' };
   });
 
   return getDiffTree;
