@@ -15,8 +15,19 @@ Difference Generator - is a program that identifies the difference between two d
 
 Features:
 
-* Supports various input formats: YAML, JSON.
-* Generates reports in plain text, stylish, and JSON formats.
+* Input formats: YAML, YML, JSON.
+* Formats to display:  STYLISH (default), PLAIN, JSON.
+
+To get help information about utility use default help option -h, --help
+```
+gendiff -h
+```
+
+### Setup
+```
+make install
+npm link
+```
 
 ---
 ## Demonstration
