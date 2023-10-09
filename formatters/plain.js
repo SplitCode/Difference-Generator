@@ -46,7 +46,7 @@ const stringify = (value) => {
 
 const makePlain = (diffTree) => {
   const plainDiff = (node, path = '') => {
-    console.log(path);
+    // console.log(path);
     const filteredNodes = node.filter((item) => item.status !== 'unchanged');
     // console.log(filteredNodes);
     const result = filteredNodes.map((item) => {
