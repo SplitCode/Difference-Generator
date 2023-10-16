@@ -13,26 +13,22 @@ const resultStylish = fs.readFileSync(getFixturePath('resultStylish.txt'), 'utf-
 const resultPlain = fs.readFileSync(getFixturePath('resultPlain.txt'), 'utf-8');
 const resultJson = fs.readFileSync(getFixturePath('resultJson.txt'), 'utf-8');
 
-test('diffJsonStylish', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'stylish')).toEqual(resultStylish);
+test('should be work with json', () => {
+  const filepath1 = getFixturePath('file1.json');
+  const filepath2 = getFixturePath('file2.json');
+
+  expect(genDiff(filepath1, filepath2)).toBe(resultStylish);
+  expect(genDiff(filepath1, filepath2, 'stylish')).toBe(resultStylish);
+  expect(genDiff(filepath1, filepath2, 'json')).toBe(resultJson);
+  expect(genDiff(filepath1, filepath2, 'plain')).toBe(resultPlain);
 });
 
-test('diffYmlStylish', () => {
-  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yaml'), 'stylish')).toEqual(resultStylish);
-});
+test('should be work with yml/yaml', () => {
+  const filepath1 = getFixturePath('file1.yml');
+  const filepath2 = getFixturePath('file2.yaml');
 
-test('diffJsonPlain', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain')).toEqual(resultPlain);
-});
-
-test('diffYmlPlain', () => {
-  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yaml'), 'plain')).toEqual(resultPlain);
-});
-
-test('diffJson', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json')).toEqual(resultJson);
-});
-
-test('diffYmlJson', () => {
-  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yaml'), 'json')).toEqual(resultJson);
+  expect(genDiff(filepath1, filepath2)).toBe(resultStylish);
+  expect(genDiff(filepath1, filepath2, 'stylish')).toBe(resultStylish);
+  expect(genDiff(filepath1, filepath2, 'json')).toBe(resultJson);
+  expect(genDiff(filepath1, filepath2, 'plain')).toBe(resultPlain);
 });

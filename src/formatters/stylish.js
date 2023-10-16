@@ -18,12 +18,12 @@ const stringify = (node, depth = 1) => {
   return result;
 };
 
-const makeStylish = (diffTree) => {
-  const generateStylishDiff = (tree, depth) => {
+const makeStylish = (diff) => {
+  const generateStylishDiff = (value, depth) => {
     const iterIndent = generateIndent(depth);
     const iterBracketIndent = generateBracketIndent(depth);
 
-    const result = tree.map((node) => {
+    const result = value.map((node) => {
       switch (node.status) {
         case 'nested':
           return `${iterIndent}  ${node.key}: ${generateStylishDiff(node.children, depth + 1)}`;
@@ -42,7 +42,7 @@ const makeStylish = (diffTree) => {
 
     return ['{', ...result, `${iterBracketIndent}}`].join('\n');
   };
-  return generateStylishDiff(diffTree, 1);
+  return generateStylishDiff(diff, 1);
 };
 
 export default makeStylish;

@@ -16,7 +16,10 @@ Difference Generator - is a program that identifies the difference between two d
 Features:
 
 * Input formats: YAML, YML, JSON.
-* Formats to display:  STYLISH (default), PLAIN, JSON.
+* Formats to display:
+1. STYLISH (default) - output of differences in text format;
+2. PLAIN - output of differences in the form of a tree structure;
+3. JSON - output differences in JSON format. This format allows you to use the output in machine reading.
 
 To get help information about utility use default help option -h, --help
 ```
@@ -25,7 +28,7 @@ gendiff -h
 
 ### System requirements:
 
-Node.js v20.7.0
+Node.js >= v16.9.0
 
 ### Setup
 ```

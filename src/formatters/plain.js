@@ -11,7 +11,7 @@ const stringify = (value) => {
   return String(value);
 };
 
-const makePlain = (diffTree) => {
+const makePlain = (diff) => {
   const generatePlainDiff = (node, path = '') => {
     const filteredNodes = node.filter((item) => item.status !== 'unchanged');
     const result = filteredNodes.map((item) => {
@@ -31,7 +31,7 @@ const makePlain = (diffTree) => {
     });
     return result.join('\n');
   };
-  return generatePlainDiff(diffTree);
+  return generatePlainDiff(diff);
 };
 
 export default makePlain;
