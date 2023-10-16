@@ -23,6 +23,10 @@ To get help information about utility use default help option -h, --help
 gendiff -h
 ```
 
+### System requirements:
+
+Node.js v20.7.0
+
 ### Setup
 ```
 make install
