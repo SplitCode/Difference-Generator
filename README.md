@@ -36,16 +36,41 @@ npm link
 ---
 ## Demonstration
 ### Comparison of flat JSON format files
+
+```
+gendiff __fixtures__/file1.json __fixtures__/file2.json
+```
+
 [![asciicast](https://asciinema.org/a/612836.svg)](https://asciinema.org/a/612836)
 
 ### Comparison of flat YML/YAML format files
+
+```
+gendiff __fixtures__/file1.yml __fixtures__/file2.yaml
+```
+
 [![asciicast](https://asciinema.org/a/612837.svg)](https://asciinema.org/a/612837)
 
 ### Comparison of JSON/YML/YAML format files with nested structure in 'stylish' format
+
+```
+gendiff --format stylish __fixtures__/file3.json __fixtures__/file4.json
+```
+
 [![asciicast](https://asciinema.org/a/612838.svg)](https://asciinema.org/a/612838)
 
 ### Comparison of JSON/YML/YAML format files with nested structure in 'plain' format
+
+```
+gendiff --format plain __fixtures__/file3.json __fixtures__/file4.yaml
+```
+
 [![asciicast](https://asciinema.org/a/612843.svg)](https://asciinema.org/a/612843)
 
 ### Comparison of JSON/YML/YAML format files with nested structure in 'json' format
+
+```
+gendiff --format json __fixtures__/file3.json __fixtures__/file4.yaml
+```
+
 [![asciicast](https://asciinema.org/a/612852.svg)](https://asciinema.org/a/612852)
