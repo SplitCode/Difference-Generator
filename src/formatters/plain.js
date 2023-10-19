@@ -13,10 +13,10 @@ const stringify = (value) => {
 
 const makePlain = (diff) => {
   const generatePlainDiff = (node, path = '') => {
-    const filteredNodes = node.filter((item) => item.status !== 'unchanged');
+    const filteredNodes = node.filter((item) => item.type !== 'unchanged');
     const result = filteredNodes.map((item) => {
       const itemPath = `${path}${item.key}`;
-      switch (item.status) {
+      switch (item.type) {
         case 'nested':
           return generatePlainDiff(item.children, `${itemPath}.`);
         case 'added':
@@ -26,7 +26,7 @@ const makePlain = (diff) => {
         case 'changed':
           return `Property '${itemPath}' was updated. From ${stringify(item.value1)} to ${stringify(item.value2)}`;
         default:
-          throw new Error(`Unknown status: '${item.status}'!`);
+          throw new Error(`Unknown type: '${item.type}'!`);
       }
     });
     return result.join('\n');

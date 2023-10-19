@@ -24,7 +24,7 @@ const makeStylish = (diff) => {
     const iterBracketIndent = generateBracketIndent(depth);
 
     const result = value.map((node) => {
-      switch (node.status) {
+      switch (node.type) {
         case 'nested':
           return `${iterIndent}  ${node.key}: ${generateStylishDiff(node.children, depth + 1)}`;
         case 'added':
@@ -36,11 +36,11 @@ const makeStylish = (diff) => {
         case 'unchanged':
           return `${iterIndent}  ${node.key}: ${stringify(node.value, depth)}`;
         default:
-          throw new Error(`Unknown status: '${node.status}'!`);
+          throw new Error(`Unknown type: '${node.type}'!`);
       }
     });
 
-    return ['{', ...result, `${iterBracketIndent}}`].join('\n');
+    return `{\n${result.join('\n')}\n${iterBracketIndent}}`;
   };
   return generateStylishDiff(diff, 1);
 };
